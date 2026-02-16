@@ -180,42 +180,37 @@ function maakRoute() {
     const cb = productCategorieMap[b] || "Overig";
     const da = categorieIndex(ca);
     const db = categorieIndex(cb);
-
     if (da !== db) return da - db;
     return a.localeCompare(b, "nl");
   });
 
-  // Render
   ul.innerHTML = "";
 
   sorted.forEach(product => {
-    const cat = productCategorieMap[product] || "Overig";
-
     const li = document.createElement("li");
-    li.style.margin = "10px 0";
-    li.style.padding = "10px";
-    li.style.border = "1px solid #ddd";
-    li.style.borderRadius = "8px";
 
-    // checkbox om af te vinken
+    // Compacte rij: checkbox + product + 2 kleine knoppen
+    const row = document.createElement("div");
+    row.className = "item-row";
+
     const cb = document.createElement("input");
     cb.type = "checkbox";
-    cb.style.marginRight = "10px";
+    cb.className = "item-check";
 
     const label = document.createElement("span");
-    label.textContent = `${product}  —  (${cat})`;
+    label.className = "item-label";
+    label.textContent = product; // ✅ GEEN categorie meer tonen
 
     cb.addEventListener("change", () => {
       label.style.textDecoration = cb.checked ? "line-through" : "none";
       label.style.opacity = cb.checked ? "0.5" : "1";
     });
 
-    // knopje om categorie achteraf te wijzigen
     const wijzigBtn = document.createElement("button");
-    wijzigBtn.textContent = "Wijzig categorie";
-    wijzigBtn.style.marginLeft = "12px";
-    wijzigBtn.style.padding = "6px 10px";
-
+    wijzigBtn.type = "button";
+    wijzigBtn.className = "item-btn";
+    wijzigBtn.textContent = "⚙️"; // compact (tandwiel)
+    wijzigBtn.title = "Wijzig categorie";
     wijzigBtn.addEventListener("click", () => {
       const nieuweCat = vraagCategorieVoorProduct(product);
       productCategorieMap[product] = nieuweCat;
@@ -223,22 +218,22 @@ function maakRoute() {
       maakRoute();
     });
 
-    // knopje om item te verwijderen
     const verwijderBtn = document.createElement("button");
-    verwijderBtn.textContent = "Verwijder";
-    verwijderBtn.style.marginLeft = "8px";
-    verwijderBtn.style.padding = "6px 10px";
-
+    verwijderBtn.type = "button";
+    verwijderBtn.className = "item-btn";
+    verwijderBtn.textContent = "🗑️"; // compact (prullenbak)
+    verwijderBtn.title = "Verwijder";
     verwijderBtn.addEventListener("click", () => {
       boodschappen = boodschappen.filter(x => x !== product);
       maakRoute();
     });
 
-    li.appendChild(cb);
-    li.appendChild(label);
-    li.appendChild(wijzigBtn);
-    li.appendChild(verwijderBtn);
+    row.appendChild(cb);
+    row.appendChild(label);
+    row.appendChild(wijzigBtn);
+    row.appendChild(verwijderBtn);
 
+    li.appendChild(row);
     ul.appendChild(li);
   });
 }
@@ -285,3 +280,4 @@ window.maakRoute = maakRoute;
 window.voegToeVanuitInvoer = voegToeVanuitInvoer;
 window.wisBoodschappenlijst = wisBoodschappenlijst;
 window.wisGeleerdeProducten = wisGeleerdeProducten;
+
