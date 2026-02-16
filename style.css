@@ -13,43 +13,43 @@ h1 {
 input {
   width: 100%;
   font-size: 20px;
-  padding: 14px;
+  padding: 16px;
   margin-bottom: 15px;
   box-sizing: border-box;
 }
 
-/* GROTE MOBIELE KNOPPEN */
+/* ALLE KNOPPEN GROOT */
 button {
-  width: 100%;
-  font-size: 20px;
-  padding: 16px;
-  margin-top: 12px;
-  border-radius: 12px;
+  width: 100% !important;
+  font-size: 22px !important;
+  padding: 18px !important;
+  margin-top: 14px;
+  border-radius: 14px;
   border: none;
   background-color: #2c7be5;
   color: white;
   cursor: pointer;
 }
 
-/* Kleine druk-animatie */
+/* Druk-effect */
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
-/* Knoppen in lijst iets kleiner maar nog steeds goed klikbaar */
+/* Knoppen in lijst iets kleiner maar nog steeds groot genoeg */
 li button {
-  width: auto;
-  font-size: 16px;
-  padding: 10px 14px;
-  margin-left: 8px;
-  border-radius: 8px;
+  width: 100% !important;
+  font-size: 18px !important;
+  padding: 14px !important;
+  margin-top: 8px;
   background-color: #6c757d;
+  border-radius: 10px;
 }
 
 li {
-  margin: 14px 0;
-  padding: 12px;
+  margin: 16px 0;
+  padding: 14px;
   background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
 }
