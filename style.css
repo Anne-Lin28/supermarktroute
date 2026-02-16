@@ -1,8 +1,26 @@
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   padding: 20px;
+  font-size: 20px;        /* algemene tekst groter */
+}
+
+h1 {
+  font-size: 28px;
+}
+
+input {
+  width: 100%;
+  font-size: 20px;
+  padding: 14px;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 14px;
+  margin-top: 10px;
 }
 
 li {
-  margin: 8px 0;
+  margin: 12px 0;
+  font-size: 20px;
 }
