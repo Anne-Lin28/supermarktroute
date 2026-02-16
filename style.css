@@ -1,26 +1,55 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  font-size: 20px;        /* algemene tekst groter */
+  font-size: 20px;
+  background-color: #f8f8f8;
 }
 
 h1 {
   font-size: 28px;
+  margin-bottom: 20px;
 }
 
 input {
   width: 100%;
   font-size: 20px;
   padding: 14px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
+/* GROTE MOBIELE KNOPPEN */
 button {
-  font-size: 18px;
+  width: 100%;
+  font-size: 20px;
+  padding: 16px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: none;
+  background-color: #2c7be5;
+  color: white;
+  cursor: pointer;
+}
+
+/* Kleine druk-animatie */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Knoppen in lijst iets kleiner maar nog steeds goed klikbaar */
+li button {
+  width: auto;
+  font-size: 16px;
   padding: 10px 14px;
-  margin-top: 10px;
+  margin-left: 8px;
+  border-radius: 8px;
+  background-color: #6c757d;
 }
 
 li {
-  margin: 12px 0;
-  font-size: 20px;
+  margin: 14px 0;
+  padding: 12px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
