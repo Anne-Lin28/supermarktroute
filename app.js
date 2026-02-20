@@ -47,6 +47,7 @@ const CATEGORIE_VOLGORDE = [
 
 // 2) Key voor opslag in browser (blijft bewaard op dit apparaat)
 const STORAGE_KEY_PRODUCTEN = "supermarkt_product_categorie_map_v1";
+const STORAGE_KEY_BOODSCHAPPEN = "supermarkt_boodschappenlijst_v1";
 
 // 3) In-memory state van de lijst van vandaag
 let boodschappen = []; // array van strings (producten)
@@ -75,6 +76,21 @@ function loadProductMap() {
 
 function saveProductMap() {
   localStorage.setItem(STORAGE_KEY_PRODUCTEN, JSON.stringify(productCategorieMap));
+}
+
+function loadBoodschappen() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_BOODSCHAPPEN);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveBoodschappen() {
+  localStorage.setItem(STORAGE_KEY_BOODSCHAPPEN, JSON.stringify(boodschappen));
 }
 
 function categorieIndex(cat) {
@@ -167,6 +183,7 @@ function addBoodschap(productNaam) {
   }
 
   boodschappen.push(norm);
+  saveBoodschappen();
 }
 
 /** Sorteer boodschappen op categorievolgorde + toon lijst */
@@ -225,6 +242,7 @@ function maakRoute() {
     verwijderBtn.title = "Verwijder";
     verwijderBtn.addEventListener("click", () => {
       boodschappen = boodschappen.filter(x => x !== product);
+      saveBoodschappen();
       maakRoute();
     });
 
@@ -241,6 +259,7 @@ function maakRoute() {
 /** Optioneel: wis alleen lijst van vandaag (niet je geleerde producten) */
 function wisBoodschappenlijst() {
   boodschappen = [];
+  saveBoodschappen();
   maakRoute();
 }
 
@@ -266,6 +285,9 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         voegToeVanuitInvoer();
       }
+   // ✅ Lijst van vorige keer terugzetten
+  boodschappen = loadBoodschappen();
+  maakRoute();
     });
   }
 
@@ -280,4 +302,5 @@ window.maakRoute = maakRoute;
 window.voegToeVanuitInvoer = voegToeVanuitInvoer;
 window.wisBoodschappenlijst = wisBoodschappenlijst;
 window.wisGeleerdeProducten = wisGeleerdeProducten;
+
 
